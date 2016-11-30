@@ -1,12 +1,9 @@
-<?php $this->load->view('partes/p_header',$titulo);?>
-<?php $this->load->view('partes/p_navegacion');?>
+<?php $this->load->view('partes/p_header');?>
 <section id="login">
   <div class="container">
-
+    <h2>Administrador</h2>
       <div class="col-md-6 col-md-offset-3">
-        <h2 class="text-center">Iniciar Session</h2>
-        <hr>
-    <form class="form-horizontal" action="<?php echo base_url('Seguridad/login').$pagina;?>" method="post">
+    <form class="form-horizontal" action="<?php echo base_url('Seguridad/loginAdmin');?>" method="post">
       <div class="form-group input-group">
         <span class="input-group input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
         <input type="text" name="usuario" class="form-control"/>

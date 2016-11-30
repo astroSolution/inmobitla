@@ -30,11 +30,12 @@ function cargaUsu($id){
     }
     return $usuario;
   }
-  function iniciarSesion($usr, $clv)  {
-
+  function iniciarSesion($usr, $clv, $tabla)  {
+    //para saber si es usuario o administrador
+    $tabla = ($tabla=="s_admin") ? "admin" : "usuario";
     $this->db->where('usuario=',$usr);
     $this->db->where('contrasena=',$clv);
-    $query = $this->db->get('usuario');
+    $query = $this->db->get($tabla);
 
     $rs = $query->result();
     if(count($rs) > 0){
@@ -46,7 +47,7 @@ function cargaUsu($id){
   }
   function verificalogin(){
     if(!isset($this->session->datosusu)){
-      redirect('Seguridad');
+      return true;
     }
   }
 
