@@ -12,9 +12,11 @@ class S_admin extends CI_Controller{
 
   function index()
   {
+    $data['titulo'] = "Panel Administracion";
     if($this->Usuario_model->verificalogin()){
        print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobitla/seguridad/login/s_admin\";</script>";
      }
+     $this->load->view('secciones/administracion/administracion', $data);
   }
 
 }
