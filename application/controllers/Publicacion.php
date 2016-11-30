@@ -12,10 +12,9 @@ class Publicacion extends CI_Controller{
 
   function index()
   {
-    // if($this->Usuario_model->verificalogin()){
-    //   print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobiitla/Seguridad\";</script>";
-    // }
-    $this->Usuario_model->verificalogin();
+    if($this->Usuario_model->verificalogin()){
+      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobiitla/Seguridad\";</script>";
+     }
     //Aqui le seteo el titulo, a la ventana
     $data = array();
     $id=0;
