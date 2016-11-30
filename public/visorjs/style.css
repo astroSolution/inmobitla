@@ -9,7 +9,7 @@
 	position: relative;
 	width: 100%;
 	max-width: 100%;
-	max-height:480px;
+	max-height:400px;
 	margin:0px auto 0px;
 	z-index:90;
 	text-align:left; /* reset align=center */
@@ -51,7 +51,7 @@
 	left:0;
 	top:0;
 	height:100%;
-	max-height:480px;
+	max-height:400px;
 	max-width: 100%;
 	vertical-align: top;
 	border:2px solid #FFFFFF;
@@ -60,7 +60,7 @@
 #wowslider-container1 .ws_images ul a{
 	width:100%;
 	height:100%;
-	max-height:480px;
+	max-height:400px;
 	display:block;
 	color:transparent;
 }
@@ -76,7 +76,7 @@
 	margin:0;
 }
 #wowslider-container1 .ws_images > div > img {
-	max-height:480px;
+	max-height:400px;
 }
 
 #wowslider-container1 .ws_images iframe {
@@ -294,13 +294,13 @@
 #wowslider-container1 .ws-title span{
 	color:#404449;
 }#wowslider-container1 .ws_images > ul{
-	animation: wsBasic 44s infinite;
-	-moz-animation: wsBasic 44s infinite;
-	-webkit-animation: wsBasic 44s infinite;
+	animation: wsBasic 48s infinite;
+	-moz-animation: wsBasic 48s infinite;
+	-webkit-animation: wsBasic 48s infinite;
 }
-@keyframes wsBasic{0%{left:-0%} 4.55%{left:-0%} 9.09%{left:-100%} 13.64%{left:-100%} 18.18%{left:-200%} 22.73%{left:-200%} 27.27%{left:-300%} 31.82%{left:-300%} 36.36%{left:-400%} 40.91%{left:-400%} 45.45%{left:-500%} 50%{left:-500%} 54.55%{left:-600%} 59.09%{left:-600%} 63.64%{left:-700%} 68.18%{left:-700%} 72.73%{left:-800%} 77.27%{left:-800%} 81.82%{left:-900%} 86.36%{left:-900%} 90.91%{left:-1000%} 95.45%{left:-1000%} }
-@-moz-keyframes wsBasic{0%{left:-0%} 4.55%{left:-0%} 9.09%{left:-100%} 13.64%{left:-100%} 18.18%{left:-200%} 22.73%{left:-200%} 27.27%{left:-300%} 31.82%{left:-300%} 36.36%{left:-400%} 40.91%{left:-400%} 45.45%{left:-500%} 50%{left:-500%} 54.55%{left:-600%} 59.09%{left:-600%} 63.64%{left:-700%} 68.18%{left:-700%} 72.73%{left:-800%} 77.27%{left:-800%} 81.82%{left:-900%} 86.36%{left:-900%} 90.91%{left:-1000%} 95.45%{left:-1000%} }
-@-webkit-keyframes wsBasic{0%{left:-0%} 4.55%{left:-0%} 9.09%{left:-100%} 13.64%{left:-100%} 18.18%{left:-200%} 22.73%{left:-200%} 27.27%{left:-300%} 31.82%{left:-300%} 36.36%{left:-400%} 40.91%{left:-400%} 45.45%{left:-500%} 50%{left:-500%} 54.55%{left:-600%} 59.09%{left:-600%} 63.64%{left:-700%} 68.18%{left:-700%} 72.73%{left:-800%} 77.27%{left:-800%} 81.82%{left:-900%} 86.36%{left:-900%} 90.91%{left:-1000%} 95.45%{left:-1000%} }
+@keyframes wsBasic{0%{left:-0%} 4.17%{left:-0%} 8.33%{left:-100%} 12.5%{left:-100%} 16.67%{left:-200%} 20.83%{left:-200%} 25%{left:-300%} 29.17%{left:-300%} 33.33%{left:-400%} 37.5%{left:-400%} 41.67%{left:-500%} 45.83%{left:-500%} 50%{left:-600%} 54.17%{left:-600%} 58.33%{left:-700%} 62.5%{left:-700%} 66.67%{left:-800%} 70.83%{left:-800%} 75%{left:-900%} 79.17%{left:-900%} 83.33%{left:-1000%} 87.5%{left:-1000%} 91.67%{left:-1100%} 95.83%{left:-1100%} }
+@-moz-keyframes wsBasic{0%{left:-0%} 4.17%{left:-0%} 8.33%{left:-100%} 12.5%{left:-100%} 16.67%{left:-200%} 20.83%{left:-200%} 25%{left:-300%} 29.17%{left:-300%} 33.33%{left:-400%} 37.5%{left:-400%} 41.67%{left:-500%} 45.83%{left:-500%} 50%{left:-600%} 54.17%{left:-600%} 58.33%{left:-700%} 62.5%{left:-700%} 66.67%{left:-800%} 70.83%{left:-800%} 75%{left:-900%} 79.17%{left:-900%} 83.33%{left:-1000%} 87.5%{left:-1000%} 91.67%{left:-1100%} 95.83%{left:-1100%} }
+@-webkit-keyframes wsBasic{0%{left:-0%} 4.17%{left:-0%} 8.33%{left:-100%} 12.5%{left:-100%} 16.67%{left:-200%} 20.83%{left:-200%} 25%{left:-300%} 29.17%{left:-300%} 33.33%{left:-400%} 37.5%{left:-400%} 41.67%{left:-500%} 45.83%{left:-500%} 50%{left:-600%} 54.17%{left:-600%} 58.33%{left:-700%} 62.5%{left:-700%} 66.67%{left:-800%} 70.83%{left:-800%} 75%{left:-900%} 79.17%{left:-900%} 83.33%{left:-1000%} 87.5%{left:-1000%} 91.67%{left:-1100%} 95.83%{left:-1100%} }
 
 #wowslider-container1 .ws_images {
     box-shadow: 0px 0px 2px rgba(100, 100, 100, 0.7);	
@@ -311,7 +311,7 @@
 	text-indent:0;
 	display:block;
 	bottom:20px;
-	left:-32px;
+	left:-38px;
 	visibility:hidden;
 	position:absolute;
     border: 4px solid #FFFFFF;
@@ -333,7 +333,7 @@
 	left:0;
 	overflow:hidden;
 	position:relative;
-	width:64px;
+	width:76px;
 	background-color:#FFFFFF;
 }
 #wowslider-container1  .ws_bullets .ws_bulframe{
@@ -352,7 +352,7 @@
 	position:absolute;
 	bottom:-12px;
 	margin-left:-4px;
-	left:32px;
+	left:38px;
 	background:url(./triangle.png);
 	width:15px;
 	height:8px;
