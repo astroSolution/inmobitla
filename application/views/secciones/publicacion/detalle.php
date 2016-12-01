@@ -46,11 +46,7 @@
             <div class="col-sm-6" id="slider-thumbs">
                 <!-- Bottom switcher of slider -->
                 <ul class="hide-bullets">
-                    <li class="col-sm-3">
-                        <a class="thumbnail" id="carousel-selector-0">
-                            <img src="http://placehold.it/150x150&text=zero">
-                        </a>
-                    </li>
+
               <?php $this->Publicaciones_model->generarHTMLVisorImagenesParte2($lineaPub->idpublicacion);  ?>
 
                 </ul>

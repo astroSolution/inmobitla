@@ -69,7 +69,7 @@ class Publicacion extends CI_Controller{
     $data['publicacion'] = $this->Publicaciones_model->cargaPub($id);
 
     $data['lineUsu'] = $this->Usuario_model->cargaUsu($data['publicacion'][0]->idusuario);
-    var_dump($data['publicacion']);
+    // var_dump($data['publicacion']);
 
     $data['titulo'] = $data['publicacion'][0]->titulo;
 
