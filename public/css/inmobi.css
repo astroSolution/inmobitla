@@ -3,6 +3,23 @@
 ** AstroSolucion **
 ## Documento de Estilos
 */
+
+/*Aqui style visor Detalle*/
+.hide-bullets {
+    list-style:none;
+    margin-left: -40px;
+    margin-top:20px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+}
+/*Hasta Aqui style visor Detalle*/
+
 .mapaPublicacion{
 height: 380px;
 }

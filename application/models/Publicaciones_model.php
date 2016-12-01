@@ -25,7 +25,7 @@ class Publicaciones_model extends CI_Model{
   function cargaPub($idpub){
     $this->db->where('idpublicacion',$idpub);
     $publicacion = $this->db->get('publicacion');
-
+    // var_dump($publicacion  ->result());
     return $publicacion->result();
   }
   function desactivaPub($idpub) {
@@ -97,8 +97,8 @@ return $rs;
     $publicacion->precio = 0;
     $publicacion->accion = "";
     $publicacion->descripcion = "";
-    $publicacion->LTN = 18.442273;
-    $publicacion->LGT = -70.012666;
+    $publicacion->LTN = 0;
+    $publicacion->LGT = 0;
 
 
 
@@ -237,7 +237,75 @@ return $rs;
         if ($caracteres['0'] === $id){
           $imagen = $id.'_'.$caracteres['1'];
           // var_dump($imagen);
-           echo '<div class="col-md-6" style="width:20%;"><img src="/inmobiitla/upload/'.$imagen.'" class="img-responsive img-thumbnail" /></div>'."\n";
+           echo '<div class="col-md-6" style="width:20%;"><img src="/inmobitla/upload/'.$imagen.'" class="img-responsive img-thumbnail" /></div>'."\n";
+        }
+      }
+      $dirint->close();
+  }
+function generarHTMLVisorImagenes($idPub)
+{
+  //agregue esto para filtrar por publicacion en el editar asi aparescan sus img
+    $id=$idPub;
+    $imagenNumero = 0;
+    $directory=('upload/');
+    $dirint = dir($directory);
+
+if ($idPub == null) {
+  $id = $this->ultimoId();
+}
+
+    while(($archivo = $dirint->read()) !== false)
+    {
+      $str = $archivo;
+      $caracteres = preg_split('/_/', $str, -1, PREG_SPLIT_NO_EMPTY);
+      // var_dump($caracteres);
+    // $items = (string)$id;
+      // var_dump($items);
+      if ($caracteres['0'] === $id){
+        $imagen = $id.'_'.$caracteres['1'];
+        //  var_dump($imagenNumero);
+
+          $cls = ($imagenNumero==0) ? "active item" : "item";
+
+          echo '<div class="'.$cls.'" data-slide-number="'.$imagenNumero.'">
+          <img src="/inmobitla/upload/'.$imagen.'"></div>';
+          $imagenNumero = $imagenNumero + 1;
+
+      }
+    }
+    $dirint->close();
+}
+
+  function generarHTMLVisorImagenesParte2($idPub)
+  {
+    //agregue esto para filtrar por publicacion en el editar asi aparescan sus img
+      $id=$idPub;
+      $imagenNumero = 0;
+      $directory=('upload/');
+      $dirint = dir($directory);
+
+  if ($idPub == null) {
+    $id = $this->ultimoId();
+  }
+
+      while(($archivo = $dirint->read()) !== false)
+      {
+        $str = $archivo;
+        $caracteres = preg_split('/_/', $str, -1, PREG_SPLIT_NO_EMPTY);
+        // var_dump($caracteres);
+      // $items = (string)$id;
+        // var_dump($items);
+        if ($caracteres['0'] === $id){
+          $imagen = $id.'_'.$caracteres['1'];
+          //  var_dump($imagenNumero);
+
+            $cls = ($imagenNumero==0) ? "active item" : "item";
+
+            echo '<li class="col-sm-3">
+            <a class="thumbnail" id="carousel-selector-'.$imagenNumero.'"><img src="/inmobitla/upload/'.$imagen.'"></a>
+            </li>';
+            $imagenNumero = $imagenNumero + 1;
+
         }
       }
       $dirint->close();
