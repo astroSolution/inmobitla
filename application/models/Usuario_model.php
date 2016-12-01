@@ -20,13 +20,19 @@ class Usuario_model extends CI_Model{
   }
 }
 //carga usuario para editar
-function cargaUsu($id){
+function cargaUsu($id=""){
     $usuario ="";
+    if($id!=""){
     $this->db->where('idusuario=',$id);
     $query = $this->db->get('usuario');
     $rs = $query->result();
     if(count($rs) > 0){
       $usuario = $rs[0];
+    }
+  }else{
+    $this->db->where('estatus','A');
+      $usuario = $this->db->get('usuario');
+      $usuario = $usuario->result();
     }
     return $usuario;
   }

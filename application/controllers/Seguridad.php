@@ -24,7 +24,7 @@ class Seguridad extends CI_Controller{
       $tmp="";
         if($_POST){
           $usuario = $_POST['usuario'];
-        echo   $clave = md5($_POST['contrasena']);
+          $clave = md5($_POST['contrasena']);
             $tmp = $this->Usuario_model->iniciarSesion($usuario, $clave, $pagina);
             if ($tmp !== false) {
               $this->session->datosusu = $tmp;
