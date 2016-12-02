@@ -28,7 +28,7 @@
                         <td>{$usuario->correo}</td>
                         <td>{$usuario->cedula}</td>
                         <td>{$usuario->telefono}</td>
-                        <td><a class=\"btn btn-danger\" href=\"{$eliminar}\">X</td>
+                        <td><a class=\"btn btn-danger\" href=\"{$eliminar}\"><i class=\"glyphicon glyphicon-trash\"></i></td>
                       </tr>";
                 }
 
