@@ -9,7 +9,7 @@
 <hr>
       <div class="col-md-4">
       <div class="row">
-      <form class="" action="<?php echo base_url('Publicacion/guardarRegistroPub');?>" method="post">
+      <form  id="frmPublicar" action="<?php echo base_url('Publicacion/guardarRegistroPub');?>" method="post">
             <div class="form-group input-group">
 
               <input class="form-control" readonly type="hidden" name="idpublicacion" value="<?php echo (isset($datosPub[0]->idpublicacion) ? $datosPub[0]->idpublicacion  : ""); ?>">
@@ -17,7 +17,7 @@
 
             <div class="form-group input-group">
               <span class="input-group-addon">Titulo:</span>
-              <input class="form-control" placeholder="Apartamento, Casa, Finca" type="text" name="titulo" value="<?php echo (isset($datosPub[0]->titulo) ? $datosPub[0]->titulo  : ""); ?>" required>
+              <input class="form-control" placeholder="Apartamento, Casa, Finca" type="text" name="titulo" maxlength=48 value="<?php echo (isset($datosPub[0]->titulo) ? $datosPub[0]->titulo  : ""); ?>" required>
             </div>
             <div class="form-group input-group">
               <span class="input-group-addon">Direcci&oacute;n:</span>
@@ -71,8 +71,8 @@
 
 
 <div class="col-md-8">
-  <div>
-      <div id="map"  style="float: left;display: block;width: 100%;overflow: hidden;position: relative;min-height: 325px;margin-top: 2%;margin-bottom: 2%;box-shadow: 1px 2px 6px 1px #ddd;"></div>
+  <div style="float: left;display: block;width: 100%;overflow: hidden;position: relative;min-height: 325px;margin-top: 2%;margin-bottom: 2%;box-shadow: 1px 2px 6px 1px #ddd;">
+      <div id="map"></div>
 
   </div>
 
@@ -135,8 +135,13 @@ $(document).ready(function(){
           })
      });
 
+$('#frmPublicar').submit(function() {
+  if($('#uploaded_file').html()==""){
+    alert("Debe subir almenos una imagen");
+    return false;
+  }
 
-
+});
 });
 
 /*

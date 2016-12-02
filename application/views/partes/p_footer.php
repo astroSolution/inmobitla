@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="<?php echo base_url('public/css/inmobi.css');?>" media="screen" title="no title">
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <footer>
     <div class="footer" id="footer">
         <div class="container">
@@ -30,14 +28,6 @@
                 </div>
                 <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
                     <h3> Redes Sociales </h3>
-                    <ul>
-                        <li>
-                            <div class="input-append newsletter-box text-center">
-                                <input type="text" class="full text-center" placeholder="Email ">
-                                <button class="btn  bg-gray" type="button"> Lorem ipsum <i class="fa fa-long-arrow-right"> </i> </button>
-                            </div>
-                        </li>
-                    </ul>
                     <ul class="social">
                         <li> <a href="https://www.facebook.com/inmobitla-353354891685740/"> <i class=" fa fa-facebook">   </i> </a> </li>
                         <li> <a href="#"> <i class="fa fa-google-plus">   </i> </a> </li>
@@ -69,6 +59,5 @@
 </footer>
 
   </body>
-  <script type="text/javascript" src="<?php echo base_url('public/visorjs/wowslider.js')?>"></script>
-  <script type="text/javascript" src="<?php echo base_url('public/visorjs/script.js')?>"></script>
+
 </html>

@@ -1,16 +1,16 @@
 <?php $this->load->view('partes/p_header');?>
 <?php $this->load->view('partes/p_navegacion');?>
 <section>
-  <?php foreach ($localizacion as $key) {
-    $foto = base_url('upload/'.$key->idpublicacion.'_1.png');
+  <?php foreach ($localizacion as $valor) {
+    $foto = base_url('upload/'.$valor->idpublicacion.'_1.png');
 
-    $generaLink = base_url("publicacion/ver/".$key->idpublicacion.'/'.urls_amigables($key->titulo));
+    $generaLink = base_url("publicacion/ver/".$valor->idpublicacion.'/'.urls_amigables($valor->titulo));
     $json[]=array(
-      "title"=>$key->titulo, //titulo a mostrar
-      "lat"=>$key->LTN, //latitud
-      "lng"=>$key->LGT, //longitud
+      "title"=>$valor->titulo, //titulo a mostrar
+      "lat"=>$valor->LTN, //latitud
+      "lng"=>$valor->LGT, //longitud
       "description"=> "<img src='{$foto}' width='200px'>
-      <br/>{$key->titulo} | <a href='{$generaLink}'>Ver Mas detalle</a>
+      <br/>{$valor->titulo} | <label class=\"label label-success\">RD$ {$valor->precio}</label> | <a href='{$generaLink}'>Ver Mas detalle</a>
     "
       //descripcion a mostrar, esta ultima hay que hacerle un cambio darle un buen estilo para que se vea nitida
     );

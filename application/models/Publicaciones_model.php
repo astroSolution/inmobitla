@@ -16,16 +16,22 @@ class Publicaciones_model extends CI_Model{
       $query= $this->db->get('publicacion');
       return $query->result();
     }else{
-      $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
-        INNER JOIN TIPO t ON p.tipo = t.id
-        INNER JOIN ACCION a ON p.accion = a.id
-        WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
+      $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM publicacion p
+        INNER JOIN tipo t ON p.tipo = t.id
+        INNER JOIN accion a ON p.accion = a.id
+        WHERE idusuario in (SELECT idusuario FROM usuario WHERE estatus = 'A') AND estatus = 'A' order by idpublicacion DESC");
       return $query->result();
     }
   }
   function cargaPub($idpub){
-    $this->db->where('idpublicacion',$idpub);
-    $publicacion = $this->db->get('publicacion');
+    //cambios para que tome el nombre de tipo y accion
+    $publicacion =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM publicacion p
+      INNER JOIN tipo t ON p.tipo = t.id
+      INNER JOIN accion a ON p.accion = a.id
+      WHERE idpublicacion = $idpub AND estatus = 'A'");
+
+    // $this->db->where('idpublicacion',$idpub);
+    // $publicacion = $this->db->get('publicacion');
     // var_dump($publicacion  ->result());
     return $publicacion->result();
   }
@@ -57,10 +63,10 @@ class Publicaciones_model extends CI_Model{
   }
   function filas()
 	{
-    $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
-      INNER JOIN TIPO t ON p.tipo = t.id
-      INNER JOIN ACCION a ON p.accion = a.id
-      WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
+    $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM publicacion p
+      INNER JOIN tipo t ON p.tipo = t.id
+      INNER JOIN accion a ON p.accion = a.id
+      WHERE idusuario in (SELECT idusuario FROM usuario WHERE estatus = 'A') AND estatus = 'A'");
 		return  $query->num_rows() ;
 	}
 
@@ -69,10 +75,14 @@ class Publicaciones_model extends CI_Model{
     //como parámetros de la misma
 	function total_paginados($por_pagina,$segmento)
         {
-          $consulta =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
-            INNER JOIN TIPO t ON p.tipo = t.id
-            INNER JOIN ACCION a ON p.accion = a.id
-            WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A' limit {$por_pagina} {$segmento}");
+          $limite = $por_pagina;
+          if($por_pagina!="" && $segmento!=""){
+            $limite = $por_pagina.",".$segmento;
+          }
+          $consulta =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM publicacion p
+            INNER JOIN tipo t ON p.tipo = t.id
+            INNER JOIN accion a ON p.accion = a.id
+            WHERE idusuario in (SELECT idusuario FROM usuario WHERE estatus = 'A') AND estatus = 'A' ORDER BY idpublicacion DESC  limit {$limite} ");
           //  $consulta = $this->db->get('publicacion',$por_pagina,$segmento);
 
             if($consulta->num_rows()>0)
@@ -309,7 +319,7 @@ if ($idPub == null) {
 
             $cls = ($imagenNumero==0) ? "active item" : "item";
 
-            echo '<li class="col-sm-3">
+            echo '<li class="col-sm-1">
             <a class="thumbnail" id="carousel-selector-'.$imagenNumero.'"><img src="/inmobitla/upload/'.$imagen.'"></a>
             </li>';
             $imagenNumero = $imagenNumero + 1;

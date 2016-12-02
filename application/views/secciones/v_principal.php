@@ -5,9 +5,9 @@
 <section>
   <div class="container">
     <div class="col-md-12">
-
+      <h2>Publicaciones recientes</h2>
+      <hr>
       <?php
-      var_dump($publicaciones);
         foreach ($publicaciones as $v) {
       ?>
       <div class="col-md-3" >
@@ -22,10 +22,14 @@
         </div>
       </div>
       <?php } ?>
+<div class="col-md-12">
+    <?php echo $this->pagination->create_links() ?>
+</div>
 
-      <?php echo $this->pagination->create_links() ?>
     </div>
 
   </div>
 </section>
+<script type="text/javascript" src="<?php echo base_url('public/visorjs/wowslider.js')?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/visorjs/script.js')?>"></script>
 <?php $this->load->view('partes/p_footer'); ?>

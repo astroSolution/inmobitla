@@ -14,10 +14,15 @@
 .thumbnail {
     padding: 0;
 }
-
+.pub{
+      height: 276px!important;
+}
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
-
-    width: 100%;
+  width: 100%!important;
+  width: 500px!important;
+  /* max-width: 500px; */
+  margin: 0 auto!important;
+  object-fit: contain!important;
 }
 /*Hasta Aqui style visor Detalle*/
 
@@ -83,22 +88,21 @@ margin: 0 auto;
 .file_drag_area
 {
 
-     height:150px;
-
-     display: block;
-     width: 100%;
-     margin: 0 auto 25px auto;
-     padding: 35px;
-     color: #97A1A8;
-     background: #F9FBFE;
-     border: 2px dashed #578abd;
-     text-align: center;
-     -webkit-transition: box-shadow 0.3s,
-                         border-color 0.3s;
-     -moz-transition: box-shadow 0.3s,
-                         border-color 0.3s;
-     transition: box-shadow 0.3s,
-                         border-color 0.3s;
+height:150px;
+display: block;
+width: 100%;
+margin: 0 auto 25px auto;
+padding: 35px;
+color: #97A1A8;
+background: #F9FBFE;
+border: 2px dashed #578abd;
+text-align: center;
+-webkit-transition: box-shadow 0.3s,
+border-color 0.3s;
+-moz-transition: box-shadow 0.3s,
+border-color 0.3s;
+transition: box-shadow 0.3s,
+border-color 0.3s;
 }
 .file_drag_over{
      color:#0080FF;
@@ -253,3 +257,9 @@ max-width: 100%;
 height: 170px;
 }
 /*Visor*/
+.info{
+  margin: 5px;
+}
+.info h4{
+      word-wrap: break-word;
+}
