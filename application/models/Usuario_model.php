@@ -23,7 +23,7 @@ class Usuario_model extends CI_Model{
 function cargaUsu($id=""){
     $usuario ="";
     if($id!=""){
-    $this->db->where('idusuario',$id);
+    $this->db->where('idusuario=',$id);
     $query = $this->db->get('usuario');
     $rs = $query->result();
     if(count($rs) > 0){
@@ -35,11 +35,6 @@ function cargaUsu($id=""){
       $usuario = $usuario->result();
     }
     return $usuario;
-  }
-  function eliminaUsu($id){
-    $act['estatus'] = 'D';
-    $this->db->where('idusuario',$id);
-    $this->db->update('usuario',$act);
   }
   function iniciarSesion($usr, $clv, $tabla)  {
     //para saber si es usuario o administrador
@@ -62,8 +57,4 @@ function cargaUsu($id=""){
     }
   }
 
-  function publicacionUsuActivo(){
-  $query =  $this->db->query("SELECT * FROM PUBLICACION WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
-  return $query->result();
-  }
 }
