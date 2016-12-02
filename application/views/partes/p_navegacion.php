@@ -9,7 +9,10 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="<?php echo base_url('/'); ?>">inmobitla</a>
+      <a class="navbar-brand" href="<?php echo base_url('/'); ?>"><img src="<?php echo base_url('upload/logo.png'); ?>" class="img-responsive" style="
+    width: 105px;
+    height: 24px;
+"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
