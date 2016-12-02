@@ -8,29 +8,41 @@ class Seguridad extends CI_Controller{
     parent::__construct();
     $this->load->model(array('Usuario_model'));
     //Codeigniter : Write Less Do More
+
   }
 
   function index()
   {
-    $data['titulo'] = "Iniciar sesion";
-    $this->load->view('secciones/v_login',$data);
-  }
-  function login() {
-    //$data["titulo"]="Error en Login";
-    $usuario = $_POST['usuario'];
-    $clave = md5($_POST['contrasena']);
-    $tmp = $this->Usuario_model->iniciarSesion($usuario, $clave);
-    if ($tmp !== false) {
-      $this->session->datosusu = $tmp;
-      print "<script type=\"text/javascript\">alert('Bienvenido {$usuario}'); window.location.href = \"/inmobiitla/mispublicaciones/\";</script>";
-    }else{
-      print "<script type=\"text/javascript\">alert('Usuario o contrasena incorrectos'); window.location.href = \"/inmobiitla/seguridad/\";</script>";
 
-    }
+
+    //$this->load->view('secciones/v_login',$data);
   }
+  function login($pagina="") {
+      $data['titulo'] = "Iniciar sesion";
+      $data['pagina'] = "/".$pagina;
+      $ruta =  ($pagina=="s_admin") ? "/inmobitla/s_admin" : "/inmobitla/mispublicaciones";
+      $tmp="";
+        if($_POST){
+          $usuario = $_POST['usuario'];
+          $clave = md5($_POST['contrasena']);
+            $tmp = $this->Usuario_model->iniciarSesion($usuario, $clave, $pagina);
+            if ($tmp !== false) {
+              $this->session->datosusu = $tmp;
+              if($this->session->datosusu[0]->estatus=='D'){
+                print "<script type=\"text/javascript\">alert('Su Cuenta a sido desactivada, ponerse en contacto con la administracion'); window.location.href = \"/inmobitla\";</script>";
+                session_destroy();
+              }
+              print "<script type=\"text/javascript\">alert('Bienvenido {$usuario}'); window.location.href = \"$ruta\";</script>";
+            }else{
+              print "<script type=\"text/javascript\">alert('Usuario o contrasena incorrectos'); window.location.href = \"/inmobitla/seguridad/login/$pagina\";</script>";
+            }
+      }
+  $this->load->view('secciones/v_login',$data);
+  }
+  //funcion para login de los administradores
   function salir(){
     session_destroy();
-    print "<script type=\"text/javascript\">alert('Esperamos regrese pronto'); window.location.href = \"/inmobiitla/\";</script>";
+    print "<script type=\"text/javascript\">alert('Esperamos regrese pronto'); window.location.href = \"/inmobitla/\";</script>";
   }
 
 }
