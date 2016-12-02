@@ -13,12 +13,13 @@ class Publicaciones_model extends CI_Model{
   {
     if($idusu!=''){
       $this->db->where('idusuario',$idusu);
-      $this->db->Limit('10');
       $query= $this->db->get('publicacion');
       return $query->result();
     }else{
-      $this->db->where('estatus','A');
-      $query= $this->db->get('publicacion');
+      $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
+        INNER JOIN TIPO t ON p.tipo = t.id
+        INNER JOIN ACCION a ON p.accion = a.id
+        WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
       return $query->result();
     }
   }
@@ -56,9 +57,11 @@ class Publicaciones_model extends CI_Model{
   }
   function filas()
 	{
-    $this->db->where('estatus','A');
-		$consulta = $this->db->get('publicacion');
-		return  $consulta->num_rows() ;
+    $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
+      INNER JOIN TIPO t ON p.tipo = t.id
+      INNER JOIN ACCION a ON p.accion = a.id
+      WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
+		return  $query->num_rows() ;
 	}
 
     //obtenemos todas las provincias a paginar con la función
@@ -66,53 +69,58 @@ class Publicaciones_model extends CI_Model{
     //como parámetros de la misma
 	function total_paginados($por_pagina,$segmento)
         {
-            $consulta = $this->db->get('publicacion',$por_pagina,$segmento);
+          $consulta =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
+            INNER JOIN TIPO t ON p.tipo = t.id
+            INNER JOIN ACCION a ON p.accion = a.id
+            WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A' limit {$por_pagina} {$segmento}");
+          //  $consulta = $this->db->get('publicacion',$por_pagina,$segmento);
+
             if($consulta->num_rows()>0)
             {
                 foreach($consulta->result() as $fila)
-		{
-		    $data[] = $fila;
-		}
+              		{
+              		    $data[] = $fila;
+              		}
                     return $data;
             }
 	}
 
   //----------------------------------------------------------
-function cargarSelect()
+function cargarSelect($tipo)
 {
-  $query = $this->db->get('tipo');
+  $query = $this->db->get($tipo);
 
       $rs = $query->result();
 
 return $rs;
 }
 
-  function cargarPublicacion($id)
-  {
-    $publicacion = new stdclass();
-    $publicacion->idpublicacion = 0;
-    $publicacion->titulo = "";
-    $publicacion->direccion = "";
-    $publicacion->tipo = "";
-    $publicacion->precio = 0;
-    $publicacion->accion = "";
-    $publicacion->descripcion = "";
-    $publicacion->LTN = 0;
-    $publicacion->LGT = 0;
-
-
-
-    //$id = $this->Publicaciones_model->ultimoId();
-    $query = $this->db->where('idpublicacion=',$id);
-    $query = $this->db->get('publicacion');
-
-    $rs = $query->result();
-    if(count($rs) > 0){
-      $publicacion = $rs[0];
-    }
-
-    return $publicacion;
-  }
+  // function cargarPublicacion($id)
+  // {
+  //   $publicacion = new stdclass();
+  //   $publicacion->idpublicacion = 0;
+  //   $publicacion->titulo = "";
+  //   $publicacion->direccion = "";
+  //   $publicacion->tipo = "";
+  //   $publicacion->precio = 0;
+  //   $publicacion->accion = "";
+  //   $publicacion->descripcion = "";
+  //   $publicacion->LTN = 0;
+  //   $publicacion->LGT = 0;
+  //
+  //
+  //
+  //   //$id = $this->Publicaciones_model->ultimoId();
+  //   $query = $this->db->where('idpublicacion=',$id);
+  //   $query = $this->db->get('publicacion');
+  //
+  //   $rs = $query->result();
+  //   if(count($rs) > 0){
+  //     $publicacion = $rs[0];
+  //   }
+  //
+  //   return $publicacion;
+  // }
 
   function guardarRegistroPubBD($publicacion)
   {

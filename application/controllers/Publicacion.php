@@ -8,23 +8,22 @@ class Publicacion extends CI_Controller{
     parent::__construct();
     $this->load->helper(array('funciones'));
     $this->load->model(array('Publicaciones_model','Usuario_model'));
+    if($this->Usuario_model->verificalogin()){
+      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobitla/Seguridad\";</script>";
+     }
   }
 
   function index()
   {
-    if($this->Usuario_model->verificalogin()){
-      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobiitla/Seguridad\";</script>";
-     }
+
     //Aqui le seteo el titulo, a la ventana
     $data = array();
-    $id=0;
     if (isset($_GET['id'])) {
-      $id = $_GET['id']+0;
+        $data['datosPub'] = $this->Publicaciones_model->cargaPub($_GET['id']);
     }
-    $data['tipo'] = $this->Publicaciones_model->cargarSelect();
-    //$data['publicacionid'] = $this->Publicaciones_model->cargarPublicacion($id);
-    //agregue el editar
-    $data['datosPub'] = $this->Publicaciones_model->cargarPublicacion($id);
+    $data['tipo'] = $this->Publicaciones_model->cargarSelect('tipo');
+        $data['accion'] = $this->Publicaciones_model->cargarSelect('accion');
+
 
     $data['titulo'] = "Publicar";
     $this->load->view('secciones/publicacion/v_publicar',$data);
@@ -55,13 +54,13 @@ class Publicacion extends CI_Controller{
 
   function listar($id,$titulo){
     if($id=="fincas"){
-      print "<script>alert('Fincas'); window.location.href = \"/inmobiitla/\";</script>";
+      print "<script>alert('Fincas'); window.location.href = \"/inmobitla/\";</script>";
     }
     if($id=="casas"){
-      print "<script>alert('Casas'); window.location.href = \"/inmobiitla/\";</script>";
+      print "<script>alert('Casas'); window.location.href = \"/inmobitla/\";</script>";
     }
     if($id=="apartamentos"){
-      print "<script>alert('Apartamentos'); window.location.href = \"/inmobiitla/\";</script>";
+      print "<script>alert('Apartamentos'); window.location.href = \"/inmobitla/\";</script>";
     }
   }
 //Corregi esta funfion para arreglar el ver :D
@@ -75,7 +74,7 @@ class Publicacion extends CI_Controller{
 
 //-----------
     if($data['publicacion'][0]->estatus =='D' ){
-      print "<script>alert('Publicacion Desactivada'); window.location.href = \"/inmobiitla/\";</script>";
+      print "<script>alert('Publicacion Desactivada'); window.location.href = \"/inmobitla/\";</script>";
     }else{
 
 

@@ -19,7 +19,7 @@
   ?>
   <div class="container">
     <div class="col-md-12">
-      <div class="mapa">
+      <div class="map">
       <div id="map"></div>
     </div>
     </div>

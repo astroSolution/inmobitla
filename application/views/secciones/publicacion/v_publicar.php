@@ -8,23 +8,21 @@
 <h2><?php echo $titulo; ?></h2>
 <hr>
       <div class="col-md-4">
-
-
       <div class="row">
       <form class="" action="<?php echo base_url('Publicacion/guardarRegistroPub');?>" method="post">
 
             <div class="form-group input-group">
 
-              <input class="form-control" readonly type="hidden" name="idpublicacion" value="<?php echo $datosPub->idpublicacion; ?>">
+              <input class="form-control" readonly type="hidden" name="idpublicacion" value="<?php echo (isset($datosPub[0]->idpublicacion) ? $datosPub[0]->idpublicacion  : ""); ?>">
             </div>
 
             <div class="form-group input-group">
               <span class="input-group-addon">Titulo:</span>
-              <input class="form-control" placeholder="Apartamento, Casa, Finca" type="text" name="titulo" value="<?php echo $datosPub->titulo; ?>" required>
+              <input class="form-control" placeholder="Apartamento, Casa, Finca" type="text" name="titulo" value="<?php echo (isset($datosPub[0]->titulo) ? $datosPub[0]->titulo  : ""); ?>" required>
             </div>
             <div class="form-group input-group">
               <span class="input-group-addon">Direcci&oacute;n:</span>
-              <input class="form-control" type="text" placeholder="Direccion" name="direccion" value="<?php echo $datosPub->direccion; ?>" required>
+              <input class="form-control" type="text" placeholder="Direccion" name="direccion" value="<?php echo (isset($datosPub[0]->direccion) ? $datosPub[0]->direccion  : ""); ?>" required>
             </div>
 
             <div class="form-group input-group">
@@ -33,8 +31,7 @@
                 <option value="">Selecciona</option>
                 <?php
                 foreach ($tipo as $value) {
-                  var_dump($tipo);
-                  echo "<option value='{$value->nombre}'>{$value->nombre}</option>";
+                  echo "<option value='{$value->id}'>{$value->nombre}</option>";
                 }
                 ?>
               </select>
@@ -42,26 +39,28 @@
 
             <div class="form-group input-group">
               <span class="input-group-addon">Precio:</span>
-              <input class="form-control" type="number" name="precio" placeholder="120000" step="any" value="<?php echo $datosPub->precio; ?>" required>
+              <input class="form-control" type="number" name="precio" placeholder="120000" step="any" value="<?php echo (isset($datosPub[0]->precio) ? $datosPub[0]->precio  : ""); ?>;" required>
             </div>
-
             <div class="form-group input-group">
               <span class="input-group-addon">Accion:</span>
               <select class="form-control" name="accion"  required>
-                <option value="">Selecciona</option>
-                <option value="V">Vender</option>
-                <option value="A">Alquilar</option>
+                  <option value="">Selecciona</option>
+                <?php
+                foreach ($accion as $value) {
+                  echo "<option value='{$value->id}'>{$value->nombre}</option>";
+                }
+                ?>
               </select>
             </div>
 
             <div class="form-group input-group">
               <span class="input-group-addon">Descripcion:</span>
-              <textarea class="form-control" name="descripcion" value="<?php echo $datosPub->descripcion; ?>" required></textarea>
+              <textarea class="form-control" name="descripcion" required><?php echo (isset($datosPub[0]->precio) ? $datosPub[0]->descripcion  : ""); ?></textarea>
 
             </div>
-            <input class="form-control" type="hidden" name="LTN" id="lat" value="<?php echo $datosPub->LTN; ?>" required>
+            <input class="form-control" type="hidden" name="LTN" id="lat" value="<?php echo (isset($datosPub[0]->precio) ? $datosPub[0]->LTN  : "");  ?>" required>
 
-            <input class="form-control" type="hidden" name="LGT" id="lng" value="<?php echo $datosPub->LGT; ?>" required/>
+            <input class="form-control" type="hidden" name="LGT" id="lng" value="<?php echo (isset($datosPub[0]->precio) ? $datosPub[0]->LGT  : "");  ?>" required/>
             <input class="form-control" readonly type="hidden" name="idusuario" value="<?php echo $this->session->datosusu[0]->idusuario; ?>">
               <button class="btn btn-primary" type="sumit">Guardar</button>
           </div>
@@ -82,7 +81,7 @@
 <!-- Si es editar entonces aparecen la imagenes de la publicacion -->
   <?php
 if ($titulo == "Editar") {
-  $this->Publicaciones_model->presentarImagenesPublicacion($datosPub->idpublicacion);
+  $this->Publicaciones_model->presentarImagenesPublicacion($datosPub[0]->idpublicacion);
 
 }
 ?>

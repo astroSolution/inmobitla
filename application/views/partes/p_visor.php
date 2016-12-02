@@ -14,7 +14,7 @@
 		<li><img src="<?php echo base_url('public/visordata/images/88.jpg');?>" alt="88" title="88" id="wows1_8"/></li>
 		<li><img src="<?php echo base_url('public/visordata/images/99.png');?>" alt="99" title="99" id="wows1_9"/></li>
 		<li><a href="http://wowslider.com/vi"><img src="<?php echo base_url('public/visordata/images/888.jpg');?>" alt="slider" title="Tu inmobiliaria de confianza" id="wows1_10"/></a></li>
-		<li><img src="<?php echo base_url('public/visordata/images/img.jpg');?>" alt="img" title="INMOBIITLA" id="wows1_11"/></li>
+		<li><img src="<?php echo base_url('public/visordata/images/img.jpg');?>" alt="img" title="inmobitla" id="wows1_11"/></li>
 	</ul></div>
 	<div class="ws_bullets"><div>
 		<a href="#" title="1"><span><img src="<?php echo base_url('public/visordata/tooltips/1.jpg');?>" alt="1"/>1</span></a>

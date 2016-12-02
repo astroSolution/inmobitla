@@ -25,7 +25,7 @@ class MisPublicaciones extends CI_Controller{
       print "<script>confirm('Seguro que desea desactivar esta publicacion?');</script>";
       $x = $this->Publicaciones_model->desactivaPub($_GET['id']);
       if($x==1){
-        print "<script>confirm('Desactivada');window.location.href = \"/inmobiitla/mispublicaciones/\";</script>";
+        print "<script>confirm('Desactivada');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
       }
     }
   }
@@ -34,14 +34,14 @@ class MisPublicaciones extends CI_Controller{
       print "<script>confirm('Se activara la publicacion');</script>";
       $x = $this->Publicaciones_model->activaPub($_GET['id']);
       if($x==1){
-        print "<script>confirm('Activada');window.location.href = \"/inmobiitla/mispublicaciones/\";</script>";
+        print "<script>confirm('Activada');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
       }
     }else {
-    print "<script>alert('Debe elegir una publicacion');window.location.href = \"/inmobiitla/mispublicaciones/\";</script>";
+    print "<script>alert('Debe elegir una publicacion');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
     }
   }
   function editarPub($id){
-    $data['datosPub'] = $this->Publicaciones_model->cargarPublicacion($id);
+    $data['datosPub'] = $this->Publicaciones_model->obtenerPubs($id);
     $data['tipo'] = $this->Publicaciones_model->cargarSelect();
 //si el ID es menor a 1 entonces no es una edicion y el titulo y la accion se ponen en publicar
     if ($id < 1) {
@@ -53,10 +53,10 @@ class MisPublicaciones extends CI_Controller{
     if(isset($this->session->datosusu[0]->idusuario)){
     $ver = $this->Publicaciones_model->verificaPublicacion($this->session->datosusu[0]->idusuario,$id);
         if($ver != true){
-            print "<script>alert('Esta Publicacion no es de usted');window.location.href = \"/inmobiitla/mispublicaciones/\";</script>";
+            print "<script>alert('Esta Publicacion no es de usted');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
         }
     }else{
-      print "<script>alert('Debe realizar login para editar');window.location.href = \"/inmobiitla/mispublicaciones/\";</script>";
+      print "<script>alert('Debe realizar login para editar');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
     }
     $this->load->view('secciones/publicacion/v_publicar',$data);
 

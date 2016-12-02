@@ -29,7 +29,7 @@ class Usuario extends CI_Controller{
       $tmp = $this->Usuario_model->iniciarSesion($usu[0], $_POST['contrasena']);
       if ($tmp !== false) {
         $this->session->datosusu = $tmp;
-        print "<script type=\"text/javascript\">alert('Bienvenido ". $_POST['nombre']."'); window.location.href = \"/inmobiitla/mispublicaciones/\";</script>";
+        print "<script type=\"text/javascript\">alert('Bienvenido ". $_POST['nombre']."'); window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
       }
     }
   }
