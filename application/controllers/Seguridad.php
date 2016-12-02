@@ -28,11 +28,13 @@ class Seguridad extends CI_Controller{
             $tmp = $this->Usuario_model->iniciarSesion($usuario, $clave, $pagina);
             if ($tmp !== false) {
               $this->session->datosusu = $tmp;
-
+              if($this->session->datosusu[0]->estatus=='D'){
+                print "<script type=\"text/javascript\">alert('Su Cuenta a sido desactivada, ponerse en contacto con la administracion'); window.location.href = \"/inmobitla\";</script>";
+                session_destroy();
+              }
               print "<script type=\"text/javascript\">alert('Bienvenido {$usuario}'); window.location.href = \"$ruta\";</script>";
             }else{
               print "<script type=\"text/javascript\">alert('Usuario o contrasena incorrectos'); window.location.href = \"/inmobitla/seguridad/login/$pagina\";</script>";
-
             }
       }
   $this->load->view('secciones/v_login',$data);

@@ -11,23 +11,25 @@
           	<thead>
               <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Cedula</th>
-                <th>T&eacute;lefono</th>
+                <th>Titulo</th>
+                <th>Precio</th>
+                <th>Categoria</th>
+                <th>Tipo</th>
+                <th>IDUsuario</th>
                 <th>Accion</th>
               </tr>
           	</thead>
           	<tbody>
               <?php
-                foreach ($usuarios as $usuario) {
-                  $eliminar = base_url('s_admin/admin_usuario/'.$usuario->idusuario);
+                foreach ($publicaciones as $publicacion) {
+                  $eliminar = base_url('s_admin/admin_publicaciones/'.$publicacion->idpublicacion);
                 echo "<tr>
-                        <td>{$usuario->idusuario}</td>
-                        <td>{$usuario->nombre} {$usuario->apellido}</td>
-                        <td>{$usuario->correo}</td>
-                        <td>{$usuario->cedula}</td>
-                        <td>{$usuario->telefono}</td>
+                        <td>{$publicacion->idpublicacion}</td>
+                        <td>{$publicacion->titulo}</td>
+                        <td>{$publicacion->precio}</td>
+                        <td>{$publicacion->tipo}</td>
+                        <td>{$publicacion->accion}</td>
+                        <td>{$publicacion->idusuario}</td>
                         <td><a class=\"btn btn-danger\" href=\"{$eliminar}\">X</td>
                       </tr>";
                 }
