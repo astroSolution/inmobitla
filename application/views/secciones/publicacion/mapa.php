@@ -1,7 +1,9 @@
 <?php $this->load->view('partes/p_header');?>
 <?php $this->load->view('partes/p_navegacion');?>
 <section>
-  <?php foreach ($localizacion as $valor) {
+  <?php
+$json=array();
+  foreach ($localizacion as $valor) {
     $foto = base_url('upload/'.$valor->idpublicacion.'_1.png');
 
     $generaLink = base_url("publicacion/ver/".$valor->idpublicacion.'/'.urls_amigables($valor->titulo));
@@ -39,7 +41,7 @@ var map = new google.maps.Map(document.getElementById("map"), {
 
 
 // creando datos json
-var json =<?=$json;?>;
+var json =<?php echo $json;?>;
 
 // objeto para generar la informacion que se va a setear a cada punto en el mapa
 var infoWindow = new google.maps.InfoWindow();

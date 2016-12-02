@@ -15,9 +15,7 @@
     <div class="col-md-12">
 
 <!-- Aqui inicia el Visor -->
-
-
-                                  <!--/Slider-->
+<!--/Slider-->
     <div id="main_area">
       <div class="col-sm-12">
         <div id="slider">
@@ -45,7 +43,7 @@
                 <!-- Bottom switcher of slider -->
                 <ul class="hide-bullets">
 
-              <?php $this->Publicaciones_model->generarHTMLVisorImagenesParte2($lineaPub->idpublicacion);  ?>
+                    <?php $this->Publicaciones_model->generarHTMLVisorImagenesParte2($lineaPub->idpublicacion);  ?>
 
                 </ul>
             </div>

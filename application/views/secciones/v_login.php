@@ -1,5 +1,4 @@
 <?php $this->load->view('partes/p_header',$titulo);?>
-<?php $this->load->view('partes/p_navegacion');?>
 <section id="login">
   <div class="container">
 

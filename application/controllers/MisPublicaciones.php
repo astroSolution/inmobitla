@@ -28,7 +28,7 @@ class MisPublicaciones extends CI_Controller{
       print "<script>confirm('Seguro que desea desactivar esta publicacion?');</script>";
       $x = $this->Publicaciones_model->desactivaPub($_GET['id']);
       if($x==1){
-        print "<script>confirm('Desactivada');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
+        print "<script>confirm('Desactivada');window.location.href = \"/inmobitla/MisPublicaciones/\";</script>";
       }
     }
   }
@@ -37,10 +37,10 @@ class MisPublicaciones extends CI_Controller{
       print "<script>confirm('Se activara la publicacion');</script>";
       $x = $this->Publicaciones_model->activaPub($_GET['id']);
       if($x==1){
-        print "<script>confirm('Activada');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
+        print "<script>confirm('Activada');window.location.href = \"/inmobitla/MisPublicaciones/\";</script>";
       }
     }else {
-    print "<script>alert('Debe elegir una publicacion');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
+    print "<script>alert('Debe elegir una publicacion');window.location.href = \"/inmobitla/MisPublicaciones/\";</script>";
     }
   }
   function editarPub($id){
@@ -56,10 +56,10 @@ class MisPublicaciones extends CI_Controller{
     if(isset($this->session->datosusu[0]->idusuario)){
     $ver = $this->Publicaciones_model->verificaPublicacion($this->session->datosusu[0]->idusuario,$id);
         if($ver != true){
-            print "<script>alert('Esta Publicacion no es de usted');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
+            print "<script>alert('Esta Publicacion no es de usted');window.location.href = \"/inmobitla/MisPublicaciones/\";</script>";
         }
     }else{
-      print "<script>alert('Debe realizar login para editar');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
+      print "<script>alert('Debe realizar login para editar');window.location.href = \"/inmobitla/MisPublicaciones/\";</script>";
     }
     $this->load->view('secciones/publicacion/v_publicar',$data);
 

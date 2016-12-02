@@ -8,23 +8,25 @@ class Publicacion extends CI_Controller{
     parent::__construct();
     $this->load->helper(array('funciones'));
     $this->load->model(array('Publicaciones_model','Usuario_model'));
-    if($this->Usuario_model->verificalogin()){
-      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobitla/seguridad/login\";</script>";
-     }
+
   }
 
   function index()
   {
+    if($this->Usuario_model->verificalogin()){
+      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobitla/seguridad/login\";</script>";
+     }
 
     //Aqui le seteo el titulo, a la ventana
     $data = array();
     //verifica si existe el id para editar publicacion
     if (isset($_GET['id'])) {
+
       //verificacion de publicacion para saber si pertenece al usuario logueado
       if(isset($this->session->datosusu[0]->idusuario)){
           $ver = $this->Publicaciones_model->verificaPublicacion($this->session->datosusu[0]->idusuario,$_GET['id']);
           if($ver != true){
-              print "<script>alert('Esta Publicacion no es de usted');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
+              print "<script>alert('Esta Publicacion no es de usted');window.location.href = \"/inmobitla/MisPublicaciones/\";</script>";
           }
       }else{
         print "<script>alert('Debe realizar login para editar');window.location.href = \"/inmobitla/seguridad/login\";</script>";
@@ -62,16 +64,10 @@ class Publicacion extends CI_Controller{
     $this->load->view('secciones/usuarios/u_pusuario',$data);
   }
 
-  function listar($id,$titulo){
-    if($id=="fincas"){
-      print "<script>alert('Fincas'); window.location.href = \"/inmobitla/\";</script>";
-    }
-    if($id=="casas"){
-      print "<script>alert('Casas'); window.location.href = \"/inmobitla/\";</script>";
-    }
-    if($id=="apartamentos"){
-      print "<script>alert('Apartamentos'); window.location.href = \"/inmobitla/\";</script>";
-    }
+  function listar($id,$nombre){
+    $data['publicaciones'] = $this->Publicaciones_model->filtro($id);
+    $data['nopaginacion'] = true;
+    $this->load->view('secciones/v_principal', $data);
   }
 //Corregi esta funfion para arreglar el ver :D
   function ver($id,$titulo){

@@ -20,7 +20,7 @@ class Seguridad extends CI_Controller{
   function login($pagina="") {
       $data['titulo'] = "Iniciar sesion";
       $data['pagina'] = "/".$pagina;
-      $ruta =  ($pagina=="s_admin") ? "/inmobitla/s_admin" : "/inmobitla/mispublicaciones";
+      $ruta =  ($pagina=="s_admin") ? "/inmobitla/s_admin" : "/inmobitla/MisPublicaciones";
       $tmp="";
         if($_POST){
           $usuario = $_POST['usuario'];

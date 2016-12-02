@@ -27,8 +27,8 @@ $this->load->view('partes/p_header', $titulo);
               <h4 class="text-success">RD$<?php echo $v->precio; ?></h4>
           </div>
           <div>
-            <a href="<?php echo base_url('mispublicaciones/'.$estatusf.'?id='.$v->idpublicacion);?>" name="button" class="btn btn-default btn-xs"><?=$estatus;?></a>
-            <a href="<?php echo base_url('mispublicaciones/editarPub/'.$v->idpublicacion);?>" name="button" class="btn btn-default btn-xs">editar</a>
+            <a href="<?php echo base_url('MisPublicaciones/'.$estatusf.'?id='.$v->idpublicacion);?>" name="button" class="btn btn-default btn-xs"><?=$estatus;?></a>
+            <a href="<?php echo base_url('publicacion?id='.$v->idpublicacion);?>" name="button" class="btn btn-default btn-xs">editar</a>
           </div>
       </div>
     </div>

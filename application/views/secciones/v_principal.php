@@ -23,7 +23,9 @@
       </div>
       <?php } ?>
 <div class="col-md-12">
-    <?php echo $this->pagination->create_links() ?>
+      <?php if(!isset($nopaginacion)){
+ echo $this->pagination->create_links(); }
+ ?>
 </div>
 
     </div>

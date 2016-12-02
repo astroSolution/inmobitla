@@ -363,6 +363,12 @@ if ($idPub == null) {
     }
     echo $output;
   }
-
+function filtro($tipo){
+  $consulta =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus,p.LTN,p.LGT, a.nombre as accion, t.nombre as tipo  FROM publicacion p
+    INNER JOIN tipo t ON p.tipo = t.id
+    INNER JOIN accion a ON p.accion = a.id
+    WHERE idusuario in (SELECT idusuario FROM usuario WHERE estatus = 'A') AND estatus = 'A' AND p.tipo=$tipo ORDER BY idpublicacion DESC");
+    return $consulta->result();
+}
 
 }

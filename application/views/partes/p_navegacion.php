@@ -1,3 +1,4 @@
+<?php $tipo= ($this->Publicaciones_model->cargarSelect('tipo')); ?>
 <nav class="navbar navbar-default">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,28 +18,26 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tipo <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo base_url('publicacion/listar/tipo/apartamentos'); ?>">Apartamento</a></li>
-            <li><a href="<?php echo base_url('publicacion/listar/tipo/casas'); ?>">Casa</a></li>
-            <li><a href="<?php echo base_url('publicacion/listar/tipo/estudios'); ?>">Estudio</a></li>
-            <li><a href="<?php echo base_url('publicacion/listar/tipo/fincas'); ?>">Finca</a></li>
-            <li><a href="<?php echo base_url('publicacion/listar/tipo/habitaciones'); ?>">Habitacion</a></li>
+            <?php
+              foreach ($tipo as $value) {$url=base_url('publicacion/listar/').$value->id.'/'.$value->nombre;?>
+
+              <li><a href="<?php echo $url; ?>"><?php echo $value->nombre;?></a></li>
+          <?php    }
+           ?>
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" action="<?php echo base_url('buscador'); ?>">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Buscar">
-        </div>
-        <button type="submit" name="buscar" class="btn btn-default">Buscar</button>
+      <form class="navbar-form navbar-left" action="">
         <a href="<?php echo base_url('publicacion/mapa'); ?>" class="btn btn-default">Ver Modo Mapa</a>
       </form>
+
       <ul class="nav navbar-nav navbar-right">
         <li><a href="<?php echo base_url('/Publicacion/');?>">Publicar</a></li>
         <?php if(isset($this->session->datosusu)) {?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mi Cuenta<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo base_url('mispublicaciones');?>">Mis Publicaciones</a></li>
+            <li><a href="<?php echo base_url('MisPublicaciones');?>">Mis Publicaciones</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="<?php echo base_url('seguridad/salir');?>">Salir</a></li>
           </ul>
