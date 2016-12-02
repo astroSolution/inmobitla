@@ -66,10 +66,10 @@ function cargaUsu($id=""){
 
 //nuevo carga publicaciones.
   function publicacionUsuActivo(){
-    $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
-      INNER JOIN TIPO t ON p.tipo = t.id
-      INNER JOIN ACCION a ON p.accion = a.id
-      WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
+    $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus, a.nombre as accion, t.nombre as tipo  FROM publicaicon p
+      INNER JOIN tipo t ON p.tipo = t.id
+      INNER JOIN accion a ON p.accion = a.id
+      WHERE idusuario in (SELECT idusuario FROM usuario WHERE estatus = 'A') AND estatus = 'A'");
     return $query->result();
   }
 
