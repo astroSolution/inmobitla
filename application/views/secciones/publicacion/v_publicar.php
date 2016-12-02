@@ -10,7 +10,6 @@
       <div class="col-md-4">
       <div class="row">
       <form class="" action="<?php echo base_url('Publicacion/guardarRegistroPub');?>" method="post">
-
             <div class="form-group input-group">
 
               <input class="form-control" readonly type="hidden" name="idpublicacion" value="<?php echo (isset($datosPub[0]->idpublicacion) ? $datosPub[0]->idpublicacion  : ""); ?>">
@@ -31,7 +30,8 @@
                 <option value="">Selecciona</option>
                 <?php
                 foreach ($tipo as $value) {
-                  echo "<option value='{$value->id}'>{$value->nombre}</option>";
+                  $seleccionar = ($datosPub[0]->tipo == $value->id) ? "selected" : "";
+                  echo "<option value='{$value->id}' {$seleccionar}>{$value->nombre}</option>";
                 }
                 ?>
               </select>
@@ -39,7 +39,7 @@
 
             <div class="form-group input-group">
               <span class="input-group-addon">Precio:</span>
-              <input class="form-control" type="number" name="precio" placeholder="120000" step="any" value="<?php echo (isset($datosPub[0]->precio) ? $datosPub[0]->precio  : ""); ?>;" required>
+              <input class="form-control" type="number" name="precio" placeholder="120000" step="any" value="<?php echo (isset($datosPub[0]->precio) ? $datosPub[0]->precio  : ""); ?>" required>
             </div>
             <div class="form-group input-group">
               <span class="input-group-addon">Accion:</span>
@@ -47,7 +47,8 @@
                   <option value="">Selecciona</option>
                 <?php
                 foreach ($accion as $value) {
-                  echo "<option value='{$value->id}'>{$value->nombre}</option>";
+                  $seleccionar = ($datosPub[0]->accion == $value->id) ? "selected" : "";
+                  echo "<option value='{$value->id}' {$seleccionar}>{$value->nombre}</option>";
                 }
                 ?>
               </select>
@@ -64,13 +65,15 @@
             <input class="form-control" readonly type="hidden" name="idusuario" value="<?php echo $this->session->datosusu[0]->idusuario; ?>">
               <button class="btn btn-primary" type="sumit">Guardar</button>
           </div>
-      </form>
+      </form><br>
+        <?php if(isset($datosPub) && $datosPub[0]->LTN != 0 ){echo "<div class=\"alert alert-info\"><h5 class=\"text-warning\">Actualmente tiene una ubicacion guardada si mueve el marcador cambiara la ubicacion</h5></div>";} ?>
         </div>
 
 
 <div class="col-md-8">
-  <div class="">
+  <div>
       <div id="map"  style="float: left;display: block;width: 100%;overflow: hidden;position: relative;min-height: 325px;margin-top: 2%;margin-bottom: 2%;box-shadow: 1px 2px 6px 1px #ddd;"></div>
+
   </div>
 
 </div>

@@ -9,7 +9,7 @@ class Publicacion extends CI_Controller{
     $this->load->helper(array('funciones'));
     $this->load->model(array('Publicaciones_model','Usuario_model'));
     if($this->Usuario_model->verificalogin()){
-      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobitla/Seguridad\";</script>";
+      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobitla/seguridad/login\";</script>";
      }
   }
 
@@ -18,11 +18,21 @@ class Publicacion extends CI_Controller{
 
     //Aqui le seteo el titulo, a la ventana
     $data = array();
+    //verifica si existe el id para editar publicacion
     if (isset($_GET['id'])) {
+      //verificacion de publicacion para saber si pertenece al usuario logueado
+      if(isset($this->session->datosusu[0]->idusuario)){
+          $ver = $this->Publicaciones_model->verificaPublicacion($this->session->datosusu[0]->idusuario,$_GET['id']);
+          if($ver != true){
+              print "<script>alert('Esta Publicacion no es de usted');window.location.href = \"/inmobitla/mispublicaciones/\";</script>";
+          }
+      }else{
+        print "<script>alert('Debe realizar login para editar');window.location.href = \"/inmobitla/seguridad/login\";</script>";
+      }
         $data['datosPub'] = $this->Publicaciones_model->cargaPub($_GET['id']);
     }
     $data['tipo'] = $this->Publicaciones_model->cargarSelect('tipo');
-        $data['accion'] = $this->Publicaciones_model->cargarSelect('accion');
+    $data['accion'] = $this->Publicaciones_model->cargarSelect('accion');
 
 
     $data['titulo'] = "Publicar";

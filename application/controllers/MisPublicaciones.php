@@ -9,6 +9,9 @@ class MisPublicaciones extends CI_Controller{
       $this->load->model(array('Usuario_model','Publicaciones_model'));
       $this->load->helper(array('funciones'));
     //Codeigniter : Write Less Do More
+    if($this->Usuario_model->verificalogin()){
+      print "<script>alert('Favor Hacer Login'); window.location.href = \"/inmobitla/Seguridad/login\";</script>";
+     }
   }
 
   function index()
@@ -42,7 +45,7 @@ class MisPublicaciones extends CI_Controller{
   }
   function editarPub($id){
     $data['datosPub'] = $this->Publicaciones_model->obtenerPubs($id);
-    $data['tipo'] = $this->Publicaciones_model->cargarSelect();
+    $data['tipo'] = $this->Publicaciones_model->cargarSelect("tipo");
 //si el ID es menor a 1 entonces no es una edicion y el titulo y la accion se ponen en publicar
     if ($id < 1) {
       $data['titulo'] = "Publicar";
