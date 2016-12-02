@@ -64,15 +64,29 @@ class Publicacion extends CI_Controller{
       print "<script>alert('Apartamentos'); window.location.href = \"/inmobiitla/\";</script>";
     }
   }
+//Corregi esta funfion para arreglar el ver :D
   function ver($id,$titulo){
     $data['publicacion'] = $this->Publicaciones_model->cargaPub($id);
+
+    $data['lineUsu'] = $this->Usuario_model->cargaUsu($data['publicacion'][0]->idusuario);
+    // var_dump($data['publicacion']);
+
     $data['titulo'] = $data['publicacion'][0]->titulo;
+
+//-----------
     if($data['publicacion'][0]->estatus =='D' ){
       print "<script>alert('Publicacion Desactivada'); window.location.href = \"/inmobiitla/\";</script>";
     }else{
+
+
       $this->load->view('secciones/publicacion/detalle', $data);
     }
+//-----------
+
+
+
   }
+
   function mapa()
   {
     $data['localizacion']=$this->Publicaciones_model->obtenerPubs();

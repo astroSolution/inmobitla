@@ -21,7 +21,7 @@ $this->load->view('partes/p_header', $titulo);
       <div class="pub thumbnail ">
           <img src="http://www.lesdalies.com/files/hotel/dalias-apartamentos-salou/apartamentos/familiar/salon_apartamento_familiar.jpg" alt="">
           <div class="info">
-              <h4><a href="<?php echo base_url('publicacion/ver/'.urls_amigables($v->titulo).'/'.$v->idpublicacion); ?>"><?php echo $v->titulo; ?></a>
+              <h4><a href="<?php echo base_url('publicacion/ver/'.$v->idpublicacion.'/'.urls_amigables($v->titulo)); ?>"><?php echo $v->titulo; ?></a>
               </h4>
               <h5><?php echo ($v->accion=='V') ? 'Venta' : 'Alquiler'; ?></h5>
               <h4 class="text-success">RD$<?php echo $v->precio; ?></h4>
