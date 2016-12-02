@@ -59,7 +59,8 @@ class S_admin extends CI_Controller{
     $data['datos']=$this->Admin_model->cargaTa($data['tipo']);
     $this->load->view('secciones/administracion/admin_ta',$data);
 }
-function guardar_ta($tipo){
+function guardar_ta($tipo)
+{
   if($_POST){
     $this->Admin_model->manejaTipos($tipo,$_POST);
      print "<script>alert('Guardado Correctamente!'); window.location.href = \"/inmobitla/s_admin/admin_ta?tipo={$tipo}\";</script>";

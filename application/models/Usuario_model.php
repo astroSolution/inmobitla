@@ -19,7 +19,7 @@ class Usuario_model extends CI_Model{
       $this->db->insert('usuario',$usuario);
   }
 }
-//carga usuario para editar
+//carga usuario para editar o los carga todos
 function cargaUsu($id=""){
     $usuario ="";
     if($id!=""){
@@ -41,6 +41,7 @@ function cargaUsu($id=""){
     $this->db->where('idusuario',$id);
     $this->db->update('usuario',$act);
   }
+  //optimizado para usuario y administradores
   function iniciarSesion($usr, $clv, $tabla)  {
     //para saber si es usuario o administrador
     $tabla = ($tabla=="s_admin") ? "admin" : "usuario";
@@ -56,14 +57,20 @@ function cargaUsu($id=""){
     $nn = $todos->result();
     return false;
   }
+  //predunta si exite alguien en la session
   function verificalogin(){
     if(!isset($this->session->datosusu)){
       return true;
     }
   }
 
+//nuevo carga publicaciones.
   function publicacionUsuActivo(){
-  $query =  $this->db->query("SELECT * FROM PUBLICACION WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
-  return $query->result();
+    $query =  $this->db->query("SELECT p.idpublicacion,p.titulo, p.direccion, p.precio, p.descripcion, p.ltn, p.lgt, p.idusuario,p.estatus, a.nombre as accion, t.nombre as tipo  FROM PUBLICACION p
+      INNER JOIN TIPO t ON p.tipo = t.id
+      INNER JOIN ACCION a ON p.accion = a.id
+      WHERE IDUSUARIO in (SELECT IDUSUARIO FROM USUARIO WHERE ESTATUS = 'A') AND ESTATUS = 'A'");
+    return $query->result();
   }
+
 }
