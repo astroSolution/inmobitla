@@ -263,6 +263,7 @@ return $rs;
 function generarHTMLVisorImagenes($idPub)
 {
   //agregue esto para filtrar por publicacion en el editar asi aparescan sus img
+  //Esto esta de mas :D
     $id=$idPub;
     $imagenNumero = 0;
     $directory=('upload/');
